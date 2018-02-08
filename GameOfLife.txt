@@ -1,0 +1,11 @@
+Conway's game of life
+Server side game logic
+Asynchronous - Chatrooms are a great model - One or two players should play at the same time
+10x10 cells - make a 12x12 array where the border does not populate
+.NET - C# 
+Microsoft Database
+-Shared - GitHub Repository
+
+Checking the database 
+Update does a database query on a timer
+Click with mouse and graphics
