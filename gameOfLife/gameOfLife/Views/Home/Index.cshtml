@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Game";
+}
+<html>
+
+<head>
+    <title>Game of Life</title>
+    <style>
+        table,
+        td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Game of Life</h1>
+    <canvas id="myCanvas" width="160" height="160" style="border:1px solid #d3d3d3;" onclick></canvas>
+
+    <script>
+        // Basic Shape Contructor to store Shapes position and properties
+        function Shape(x, y, id, fill) {
+            this.x = x;
+            this.y = y;
+            this.w = 15;
+            this.h = 15;
+            this.id = id;
+            this.fill = fill;
+        }
+
+        //Stores canvas
+        var elem = document.getElementById('myCanvas');
+
+        //check if there is browser support for canvas
+        if (elem.getContext) {
+            var gridArray = new Array(10);
+
+            var xPos = 0;
+            var yPos = 0;
+            for (var i = 0; i < 100; i++) {
+                gridArray[i] = new Shape(xPos, yPos, i, "grey");
+                xPos += 16;
+                if ((i + 1) % 10 == 0) {
+                    xPos = 0;
+                    yPos += 16;
+                }
+            }
+
+            //Store info about canvas
+            elemLeft = elem.offsetLeft;
+            elemTop = elem.offsetTop;
+            context = elem.getContext('2d');
+
+            //Add Hit test event listener
+            elem.addEventListener('click', function (event) {
+                var x = event.pageX - elemLeft,
+                    y = event.pageY - elemTop;
+                console.log(x, y);
+
+                //run through array and check if mouse click matched an elements location
+                gridArray.forEach(function (element) {
+                    if (y > element.y && y < element.y + element.h && x > element.x && x < element.x + element.w) {
+                        onHitElement(element);
+                    }
+                });
+
+            }, false);
+
+            draw();
+        }
+
+
+        //Draws Canvas and all the elements in the array
+        function draw() {
+            context = elem.getContext('2d');
+            for (var i in gridArray) {
+                oRec = gridArray[i];
+                context.fillStyle = oRec.fill;
+                context.fillRect(oRec.x, oRec.y, oRec.w, oRec.h);
+
+            }
+        }
+
+        //Called if mouse click matched an elements location - changes Shape object fill color and redraws grid
+        function onHitElement(element) {
+            gridArray[element.id].fill = "green";
+            draw();
+        }
+
+    </script>
+
+</body>
+
+</html>
