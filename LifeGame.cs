@@ -6,15 +6,17 @@ namespace Life
     public class LifeGame
     {
         private bool[,] world;
-        private bool[,] nextGeneration;
+        private bool[,] newGen;
         private Task processTask;
 
         public LifeGame(int size)
         {
-            if (size < 0) throw new ArgumentOutOfRangeException("Must be greater than zero");
-            this.Size = size;
-            world = new bool[size, size];
-            nextGeneration = new bool[size, size];
+            if (size < 0)
+            {
+                this.Size = size;
+                newGen = new bool[size, size];
+                world = new bool[size, size];
+            }
         }
 
         public int Size { get; private set; }
@@ -42,31 +44,7 @@ namespace Life
             }
         }
 
-        public void Update()
-        {
-            if (this.processTask != null && this.processTask.IsCompleted)
-            {
-
-                var flip = this.nextGeneration;
-                this.nextGeneration = this.world;
-                this.world = flip;
-                Generation++;
-
-
-                this.processTask = this.ProcessGeneration();
-
-                if (NextGenerationCompleted != null) NextGenerationCompleted(this.world);
-            }
-        }
-        public void Wait()
-        {
-            if (this.processTask != null)
-            {
-                this.processTask.Wait();
-            }
-        }
-
-        private Task ProcessGeneration()
+      private Task ProcessGeneration()
         {
             return Task.Factory.StartNew(() =>
             {
@@ -104,59 +82,41 @@ namespace Life
 
         private static int IsAlive(bool[,] world, int size, int x, int y, int offsetx, int offsety)
         {
-            int result = 0;
+            int results = 0;
 
             int proposedOffsetX = x + offsetx;
             int proposedOffsetY = y + offsety;
             bool outOfBounds = proposedOffsetX < 0 || proposedOffsetX >= size | proposedOffsetY < 0 || proposedOffsetY >= size;
             if (!outOfBounds)
             {
-                result = world[x + offsetx, y + offsety] ? 1 : 0;
+                results = world[x + offsetx, y + offsety] ? 1 : 0;
             }
-            return result;
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            LifeGame test = new LifeGame(10);
-
-
-            test.SelectCell(5, 5);
-            test.SelectCell(5, 6);
-            test.SelectCell(5, 7);
-
-            test.BeginGeneration();
-            test.Wait();
-            OutputBoard(test);
-
-            test.Update();
-            test.Wait();
-            OutputBoard(test);
-
-            test.Update();
-            test.Wait();
-            OutputBoard(test);
-
-            Console.ReadKey();
+            return results;
         }
 
-        private static void OutputBoard(LifeGame sim)
+        public void Update()
         {
-            var line = new String('-', sim.Size);
-            Console.WriteLine(line);
-
-            for (int y = 0; y < sim.Size; y++)
+            if (this.processTask != null && this.processTask.IsCompleted)
             {
-                for (int x = 0; x < sim.Size; x++)
-                {
-                    Console.Write(sim[x, y] ? "1" : "0");
-                }
 
-                Console.WriteLine();
+                var flip = this.nextGeneration;
+                this.nextGeneration = this.world;
+                this.world = flip;
+                Generation++;
+
+
+                this.processTask = this.ProcessGeneration();
+
+                if (NextGenerationCompleted != null) NextGenerationCompleted(this.world);
+            }
+        }
+        public void Wait()
+        {
+            if (this.processTask != null)
+            {
+                this.processTask.Wait();
             }
         }
     }
 }
+
