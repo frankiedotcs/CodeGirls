@@ -30,11 +30,6 @@ namespace Life
             set { this.world[x, y] = value; }
         }
 
-        public bool SelectCell(int x, int y)
-        {
-            bool currentValue = this.world[x, y];
-            return this.world[x, y] = !currentValue;
-        }
 
         public void BeginGeneration()
         {
@@ -44,7 +39,13 @@ namespace Life
             }
         }
 
-      private Task ProcessGeneration()
+        public bool SelectCell(int x, int y)
+        {
+            bool currentValue = this.world[x, y];
+            return this.world[x, y] = !currentValue;
+        }
+
+        private Task ProcessGeneration()
         {
             return Task.Factory.StartNew(() =>
             {
