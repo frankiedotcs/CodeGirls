@@ -1,22 +1,11 @@
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/bin/Debug/netcoreapp2.0/gameOfLife.deps.json
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/bin/Debug/netcoreapp2.0/gameOfLife.runtimeconfig.json
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/bin/Debug/netcoreapp2.0/gameOfLife.runtimeconfig.dev.json
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/bin/Debug/netcoreapp2.0/gameOfLife.dll
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/bin/Debug/netcoreapp2.0/gameOfLife.pdb
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/obj/Debug/netcoreapp2.0/gameOfLife.csprojResolveAssemblyReference.cache
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/obj/Debug/netcoreapp2.0/gameOfLife.csproj.CoreCompileInputs.cache
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/obj/Debug/netcoreapp2.0/gameOfLife.AssemblyInfoInputs.cache
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/obj/Debug/netcoreapp2.0/gameOfLife.AssemblyInfo.cs
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/obj/Debug/netcoreapp2.0/gameOfLife.dll
-/Users/kierrapalmer/Desktop/class materials/3750/gameOfLife/gameOfLife/obj/Debug/netcoreapp2.0/gameOfLife.pdb
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\bin\Debug\netcoreapp2.0\gameOfLife.deps.json
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\bin\Debug\netcoreapp2.0\gameOfLife.runtimeconfig.json
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\bin\Debug\netcoreapp2.0\gameOfLife.runtimeconfig.dev.json
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\bin\Debug\netcoreapp2.0\gameOfLife.dll
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\bin\Debug\netcoreapp2.0\gameOfLife.pdb
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\obj\Debug\netcoreapp2.0\gameOfLife.csprojResolveAssemblyReference.cache
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\obj\Debug\netcoreapp2.0\gameOfLife.csproj.CoreCompileInputs.cache
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\obj\Debug\netcoreapp2.0\gameOfLife.AssemblyInfoInputs.cache
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\obj\Debug\netcoreapp2.0\gameOfLife.AssemblyInfo.cs
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\obj\Debug\netcoreapp2.0\gameOfLife.dll
-C:\Users\theuh\OneDrive\Desktop\3750\gameOfLife\gameOfLife\obj\Debug\netcoreapp2.0\gameOfLife.pdb
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\bin\Debug\netcoreapp2.0\GameOfLife.deps.json
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\bin\Debug\netcoreapp2.0\GameOfLife.runtimeconfig.json
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\bin\Debug\netcoreapp2.0\GameOfLife.runtimeconfig.dev.json
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\bin\Debug\netcoreapp2.0\GameOfLife.dll
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\bin\Debug\netcoreapp2.0\GameOfLife.pdb
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\obj\Debug\netcoreapp2.0\GameOfLife.csprojResolveAssemblyReference.cache
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\obj\Debug\netcoreapp2.0\GameOfLife.csproj.CoreCompileInputs.cache
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\obj\Debug\netcoreapp2.0\GameOfLife.AssemblyInfoInputs.cache
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\obj\Debug\netcoreapp2.0\GameOfLife.AssemblyInfo.cs
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\obj\Debug\netcoreapp2.0\GameOfLife.dll
+C:\Users\w01263421\source\repos\GameOfLife\GameOfLife\obj\Debug\netcoreapp2.0\GameOfLife.pdb
