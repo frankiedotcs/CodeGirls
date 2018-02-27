@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web.Http;
 using Models;
 
-
+/// <summary>
+/// Found this tutorial how to draw with c# but I'm not sure if it is right
+/// </summary>
 namespace GameOfLife
 {
     public class Game
@@ -17,8 +19,6 @@ namespace GameOfLife
         public const int BoxesY = 10;
 
         public static bool Paused = true;
-
-       
 
         public static Vector2 ScreenSize;
 
@@ -97,7 +97,7 @@ namespace GameOfLife
             if (Paused)
             {
                 string paused = "Paused";
-                 box1.DrawString(Font, paused, ScreenSize / 2, Color.Gray, 0f, Font.MeasureString(paused) / 2, 1f, SpriteEffects.None, 0f);
+                box1.DrawString(Font, paused, ScreenSize / 2, Color.Gray, 0f, Font.MeasureString(paused) / 2, 1f, SpriteEffects.None, 0f);
             }
             grid.Draw(box1);
             box1.End();

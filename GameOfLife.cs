@@ -5,7 +5,7 @@ using System.Text;
 
 
 /// <summary>
-/// Summary description for Class1
+/// Summary description for Game of Life Shapes and Grids
 /// </summary>
 namespace GameOfLife
 {
@@ -19,7 +19,7 @@ namespace GameOfLife
         public Shape(Point position)
         {
             Position = position;
-            Bounds = new Rectangle(Position.X * Game1.ShapeSize, Position.Y * Game1.ShapeSize, Game1.ShapeSize, Game1.ShapeSize);
+            Bounds = new Rectangle(Position.X * Game.ShapeSize, Position.Y * Game.ShapeSize, Game.ShapeSize, Game.ShapeSize);
 
             IsAlive = false;
         }
@@ -36,10 +36,10 @@ namespace GameOfLife
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(Box1 box1)
         {
             if (IsAlive)
-                spriteBatch.Draw(Game1.Pixel, Bounds, Color.Green);
+                box1.Draw(Game.Pixel, Bounds, Color.Green);
 
 
         }
@@ -58,7 +58,7 @@ namespace GameOfLife
         /// </summary>
         public Grid()
         {
-            Size = new Point(Game1.BoxesX, Game1.BoxesY);
+            Size = new Point(Game.BoxesX, Game.BoxesY);
 
             boxes = new Box[Size.X, Size.Y];
 
@@ -161,11 +161,11 @@ namespace GameOfLife
 
             // Draw vertical gridlines.
             for (int i = 0; i < Size.X; i++)
-                spriteBatch.Draw(Game1.Pixel, new Rectangle(i * Game1.BoxSize - 1, 0, 1, Size.Y * Game1.BoxSize), Color.DarkGray);
+                spriteBatch.Draw(Game.Pixel, new Rectangle(i * Game.BoxSize - 1, 0, 1, Size.Y * Game.BoxSize), Color.DarkGray);
 
             // Draw horizontal gridlines.
             for (int j = 0; j < Size.Y; j++)
-                spriteBatch.Draw(Game1.Pixel, new Rectangle(0, j * Game1.BoxSize - 1, Size.X * Game1.BoxSize, 1), Color.DarkGray);
+                spriteBatch.Draw(Game.Pixel, new Rectangle(0, j * Game.BoxSize - 1, Size.X * Game.BoxSize, 1), Color.DarkGray);
         }
     }
 }
