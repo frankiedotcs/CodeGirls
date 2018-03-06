@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+<script src="socket.js"></script>
 
 <h1>Game of Life</h1>
 <canvas id = "myCanvas" width="160" height="160" style="border:1px solid #d3d3d3;"></canvas>
@@ -170,6 +171,7 @@
                 for (var col = 1; col < 11; col++){
                     var element = arr[row][col];
                     if (y > element.y && y < element.y + element.h && x > element.x && x < element.x + element.w){
+                        doSend(arr);                                        //send to server
                         bringAlive(element);
                         draw();
                     }

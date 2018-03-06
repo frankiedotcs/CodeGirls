@@ -32,7 +32,7 @@ var server = http.createServer(onHttpRequest);
 function onHttpRequest(request, response) {
 	console.log((new Date()) + ' Received HTTP request for ' + request.url);
 
-	//if(request.url == "/") {                                                       /*TODO: Change to codegirl domain*/
+	if(request.url == "/") {                                                       /*TODO: Change to codegirl domain*/
 		fs.readFile(__dirname + '/index.html', function(err, data) {
 			if (err) {
 				res.writeHead(500);
@@ -42,10 +42,10 @@ function onHttpRequest(request, response) {
 			response.writeHead(200);
 			return response.end(data);
 		});
-	//} else {
-		//response.writeHead(404);
-		//response.end();
-	//}
+	} else {
+		response.writeHead(404);
+		response.end();
+	}
 }
 
 // Start the HTTP server object listening on port 8888.
@@ -85,15 +85,8 @@ function onWsRequest(request) {
 
 	// Handle connection message events.
 	connection.on('message', function(message) {                                           /*TODO: change function on message send*/
-		if (message.type === 'utf8') {
 			console.log('Received text message: ' + message.utf8Data);
-			connection.sendUTF('Server bouncing back message: ' + message.utf8Data);
-		} else if(message.type === 'binary') {
-			console.log('Received binary message of ' + message.binaryData.length + ' bytes');
-			connection.sendBytes(message.binaryData);
-		} else {
-			console.log('Received unknown data-type ' + message.type);
-		}
+
 	});
 
 	// Handle connection close events.

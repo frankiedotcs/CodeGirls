@@ -17,11 +17,11 @@
             log("Socket closed.");
         }
 
-        function doSend() {
-            var clientTextElem = document.getElementById("clientText");
-            var text = clientTextElem.value;
+        function doSend(arr) {
+            //var clientTextElem = document.getElementById("clientText");
+            //var text = clientTextElem.value;
             
-            log("Sending text to server: " + text);
+            log("Received array of length " + arr.length);
             ws.send(text);
         }
             

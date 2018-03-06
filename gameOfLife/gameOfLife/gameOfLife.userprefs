@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{2B471136-BECC-410A-8B08-26920107A18F}|">
   <MonoDevelop.Ide.ItemProperties.gameOfLife PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Account/socket.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Account/socketserverWS.js">
     <Files>
-      <File FileName="Views/Account/Login.cshtml" Line="227" Column="1" />
+      <File FileName="Views/Account/Login.cshtml" Line="174" Column="37" />
       <File FileName="Views/Account/socketclient.html" Line="43" Column="4" />
-      <File FileName="Views/Account/socketserverWS.js" Line="94" Column="20" />
-      <File FileName="Views/Account/socket.js" Line="31" Column="10" />
+      <File FileName="Views/Account/socketserverWS.js" Line="90" Column="5" />
+      <File FileName="Views/Account/socket.js" Line="25" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
