@@ -69,7 +69,7 @@ namespace SignalRChat{
 
             for (int gridRow = 4; gridRow < 11; gridRow++) {
                 for (int gridCol = 4; gridCol < 11; gridCol++) {
-                    int count = checkNeighbors(gridRow, gridCol);
+                    int count = CheckNeighbors(gridRow, gridCol);
 
                     if (count == 3)
                         newArray[gridRow, gridCol] = 1;
@@ -85,7 +85,7 @@ namespace SignalRChat{
 
 
         //Keeps count on number of neighbors cell has
-        public int checkNeighbors(int r, int c) {
+        public int CheckNeighbors(int r, int c) {
             int count = 0;
 
             //check if on edge
