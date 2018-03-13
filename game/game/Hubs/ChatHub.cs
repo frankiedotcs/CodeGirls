@@ -5,6 +5,7 @@ using Microsoft.AspNet.SignalR;
 namespace SignalRChat{
     public class ChatHub : Hub{
         //TODO: Need to use global variable on database
+        
             //This version recreates gridArray everytime client access hub
         public int[,] gridArray = new int[12, 12];
         public int[] array1D = new int[144];
