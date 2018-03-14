@@ -9,11 +9,30 @@ namespace SignalRChat{
             //This version recreates gridArray everytime client access hub
         public int[,] gridArray = new int[12, 12];
         public int[] array1D = new int[144];
-        
+        public string arrayString;
+        SQLCode sql = new SQLCode();
+        DBConnect db = new DBConnect();
+
+        public override Task OnConnected() {
+            string name = Context.User.Identity.Name;
+            string viewString = sql.viewGrid();
+            arrayString = db.readDB(viewString);
+
+            StringtoArray(arrayString);
+            GliderArray();
+            ArraytoString(gridArray);
+            string updateString = sql.updateDbString(arrayString);
+            db.updateDB(updateString);
+
+            return base.OnConnected();
+        }
+
         public void Send() {
              
-            GliderArray();                  //TODO: Replace with call to database to get array
+           // GliderArray();                  //TODO: Replace with call to database to get array
             Update();
+
+            
 
             //convert 2d array to 1d array 
             int count = 0;
@@ -28,7 +47,7 @@ namespace SignalRChat{
 
         //Client calls when Hit Test is triggered 
         public void CellClicked(int row, int col) {
-            GliderArray();                  //TODO: Replace with call to database to get array
+           // GliderArray();                  //TODO: Replace with call to database to get array
 
             //bring cell alive based on objects position
             gridArray[row, col] = 1;
@@ -59,7 +78,32 @@ namespace SignalRChat{
                     }
                 }
             }
-           // return gridArray;
+
+        }
+
+       public void StringtoArray(string str) {
+            int row = 0;
+            int col = 0;
+            int count = 1;
+            foreach(char c in str) {
+                gridArray[row,col] = c;
+                if(count%12 == 0) {
+                    row++;
+                    col = 0;
+                }
+                else {
+                    col++;
+                }
+                count++;
+            }
+        }
+
+        public void ArraytoString(int[,] arr) {
+            for (int r = 0; r < 12; r++) {
+                for (int c = 0; c < 12; c++) {
+                    arrayString += arr[r, c];
+                }
+            }
 
         }
 
