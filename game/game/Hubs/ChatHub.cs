@@ -24,24 +24,26 @@ namespace SignalRChat{
             string updateString = sql.updateDbString(arrayString);
             db.updateDB(updateString);
 
+            Array2dtoArray1d(gridArray);
+            Clients.All.updateArrayOnPage(array1D);
+
+
             return base.OnConnected();
         }
 
         public void Send() {
-             
-           // GliderArray();                  //TODO: Replace with call to database to get array
+
+            string name = Context.User.Identity.Name;
+            string viewString = sql.viewGrid();
+            arrayString = db.readDB(viewString);
+
+            StringtoArray(arrayString);
             Update();
+            ArraytoString(gridArray);
+            string updateString = sql.updateDbString(arrayString);
+            db.updateDB(updateString);
 
-            
-
-            //convert 2d array to 1d array 
-            int count = 0;
-            for (int r = 0; r < 12; r++) {
-                for (int c = 0; c < 12; c++) {
-                    array1D[count] = gridArray[r, c];
-                    count++;                       
-                }
-            }
+            Array2dtoArray1d(gridArray);
             Clients.All.updateArrayOnPage(array1D);
         }
 
@@ -86,7 +88,7 @@ namespace SignalRChat{
             int col = 0;
             int count = 1;
             foreach(char c in str) {
-                gridArray[row,col] = c;
+                gridArray[row,col] = (int)Char.GetNumericValue(c);
                 if(count%12 == 0) {
                     row++;
                     col = 0;
@@ -99,12 +101,22 @@ namespace SignalRChat{
         }
 
         public void ArraytoString(int[,] arr) {
+            arrayString = "";
             for (int r = 0; r < 12; r++) {
                 for (int c = 0; c < 12; c++) {
                     arrayString += arr[r, c];
                 }
             }
-
+        }
+        public void Array2dtoArray1d(int [,] arr) {
+            //convert 2d array to 1d array 
+            int count = 0;
+            for (int r = 0; r < 12; r++) {
+                for (int c = 0; c < 12; c++) {
+                    array1D[count] = gridArray[r, c];
+                    count++;
+                }
+            }
         }
 
         //Checks neighborhood and brings alive/kills based on game logic
