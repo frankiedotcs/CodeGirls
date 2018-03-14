@@ -3,3 +3,9 @@
 *.xml
 *.userprefs
 gameOfLife/gameOfLife/gameOfLife.userprefs
+*.ide-shm
+game/.vs/game/v15/Server/sqlite3/storage.ide-shm
+game/.vs/game/v15/Server/sqlite3/storage.ide
+*.ide
+game/.vs/game/v15/.suo
+game/.vs/game/v15/Server/sqlite3/storage.ide-wal
