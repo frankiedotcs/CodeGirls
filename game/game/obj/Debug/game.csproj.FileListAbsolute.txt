@@ -214,3 +214,4 @@ C:/Users/theuh/OneDrive/Documents/GitHub/CodeGirls/game/game/obj/Debug/game.pdb
 /Users/kierrapalmer/Documents/GitHub/CodeGirls/game/game/obj/Debug/game.csproj.CoreCompileInputs.cache
 /Users/kierrapalmer/Documents/GitHub/CodeGirls/game/game/obj/Debug/game.dll
 /Users/kierrapalmer/Documents/GitHub/CodeGirls/game/game/obj/Debug/game.pdb
+/Users/kierrapalmer/Documents/GitHub/CodeGirls/game/game/obj/Debug/game.csprojResolveAssemblyReference.cache
