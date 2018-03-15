@@ -10,8 +10,6 @@
     <button id="next"> Next</button>
     <button> Stop </button>
 
-    <ul id="discussion"></ul>
-
 </div>
 @section scripts {
     <!--Script references. -->
@@ -23,30 +21,49 @@
     <script>
         //Stores canvas
         var elem = document.getElementById('myCanvas');
+        elemLeft = elem.offsetLeft;
+        elemTop = elem.offsetTop;
+        context = elem.getContext('2d');
 
         var binArr = [];
         var shapeArr = [];
-        createShapeArray();
 
-        $(function () {
-            
-            // Create a function that the hub can call back to display messages.
-            var hub = $.connection.chatHub;
-            hub.client.updateArrayOnPage = function (array) {
-                binArr = array
-                createShapeArray();
-                draw();
-            };
+        //Initialize hub
+        var hub = $.connection.chatHub;
+        // Hub calls back to each client to check if they have this function
+        hub.client.updateArrayOnPage = function (array) {
+            binArr = array
+            createShapeArray();
+            draw();
+        };
 
-
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                $('#next').click(function () {
-                    //access razor array with at sign arr
-                    hub.server.send();
-                });
+        // Start the connection.
+        // Set event listeners that call specified hub functions
+        $.connection.hub.start() .done(function () {
+            $('#next').click(function () {
+                hub.server.next();
             });
+
+            //Add Hit test event listener
+            elem.addEventListener('click', function (event) {
+                var x = event.pageX - elemLeft,
+                    y = event.pageY - elemTop;
+                console.log(x, y);
+
+                //run through array and check if mouse click matched an elements location
+                for (var row = 1; row < 11; row++) {
+                    for (var col = 1; col < 11; col++) {
+                        var element = shapeArr[row][col];
+                        if (y > element.y && y < element.y + element.h && x > element.x && x < element.x + element.w) {
+                            hub.server.change(element.r, element.c);
+
+                        }
+                    }
+                }
+
+            }, false);
         });
+        
 
 
     // Basic Shape Contructor to store Shapes position and properties
@@ -66,7 +83,8 @@
     
 
     function createShapeArray() {
-        for (var i = 0; i < 12; i++) { //creates 2D array
+        //creates 2D array
+        for (var i = 0; i < 12; i++) { 
               shapeArr[i] = new Array(12);
         }
 
@@ -87,34 +105,8 @@
             if (r == 0 || r == 11)  //skip if edge
                 continue;
             yPos += 16;
-        }
-
-        //Store info about canvas
-        elemLeft = elem.offsetLeft;
-        elemTop = elem.offsetTop;
-        context = elem.getContext('2d');
-
-        //Add Hit test event listener
-        $.connection.hub.start().done(function () {
-            elem.addEventListener('click', function (event) {
-                var x = event.pageX - elemLeft,
-                    y = event.pageY - elemTop;
-                console.log(x, y);
-
-                //run through array and check if mouse click matched an elements location
-                    //TODO: fine tone when database is conencted
-                for (var row = 1; row < 11; row++) {
-                    for (var col = 1; col < 11; col++) {
-                        var element = shapeArr[row][col];
-                        if (y > element.y && y < element.y + element.h && x > element.x && x < element.x + element.w) {
-                            hub.server.CellClicked(element.r, element.c);
-
-                        }
-                    }
-                }
-
-            }, false);
-       });
+        }  
+       
     }//end createArray
 
 
