@@ -31,6 +31,22 @@ namespace SignalRChat {
                 //Not sure if I need to return anything with this call
             }
         }
+
+        /// <summary>
+        /// The DB call that should (cross fingers) update the database value to 
+        /// either alive(1) or dead(0)
+        /// </summary>
+        /// <param name="sql">the sql string that is retrieved from the SQLCode.cs</param>
+        public int getCount(string sql)
+        {
+            using (SqlConnection cn = new SqlConnection(connect)) {
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cn.Open();
+                SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                rdr.Read();
+                return (int)rdr[0];
+            }
+        }
         /// <summary>
         /// The DB call that should return the current value of the entire string
         /// held in the data column

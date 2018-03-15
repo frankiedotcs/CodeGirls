@@ -16,31 +16,48 @@ namespace SignalRChat
         public string arrayString;
         SQLCode sql = new SQLCode();
         DBConnect db = new DBConnect();
-        Timer timer = new Timer(2000);
+        int count;
 
         //Initiliaze grid to glider formation
         public override Task OnConnected()
         {
             string name = Context.User.Identity.Name;
+            String countSQL = sql.getCountSQL();
+            count = db.getCount(countSQL);
+            count++;
+            String updateSQL = sql.updateCountSQL(count);
+            db.updateDB(updateSQL);
 
-            //Get string from DB
-            string viewString = sql.viewGrid();
-            arrayString = db.readDB(viewString);
+                //Get string from DB
+                string viewString = sql.viewGrid();
+                arrayString = db.readDB(viewString);
 
-            //Convert DB string to array, initiliaze to glider, convert array to DB string
-            StringtoArray(arrayString);
-            GliderArray();
-            ArraytoString(gridArray);
+                //Convert DB string to array, initiliaze to glider, convert array to DB string
+                StringtoArray(arrayString);
+            if (count == 1) {
+                GliderArray();
+            }
+                ArraytoString(gridArray);
+
+                //Update string in db
+                string updateString = sql.updateDbString(arrayString);
+                db.updateDB(updateString);
+
+                //conver to 1d Array and update all clients
+                Array2dtoArray1d(gridArray);
+                Clients.All.updateArrayOnPage(array1D);
             
-            //Update string in db
-            string updateString = sql.updateDbString(arrayString);
-            db.updateDB(updateString);
-
-            //conver to 1d Array and update all clients
-            Array2dtoArray1d(gridArray);
-            Clients.All.updateArrayOnPage(array1D);
 
             return base.OnConnected();
+        }
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            String countSQL = sql.getCountSQL();
+            count = db.getCount(countSQL);
+            count--;
+            String updateSQL = sql.updateCountSQL(count);
+            db.updateDB(updateSQL);
+            return base.OnDisconnected(stopCalled);
         }
 
         private Task HandleTimer()
@@ -96,9 +113,12 @@ namespace SignalRChat
 
         public void Start()
         {
+            Timer timer = new Timer(1500);
             timer.AutoReset = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(Update);
             timer.Start();
+
+          
            
         }
 
@@ -197,7 +217,7 @@ namespace SignalRChat
         //Checks neighborhood and brings alive/kills based on game logic
         public void Update(object  sender, ElapsedEventArgs e)
         {
-            Update();
+            Next();
         }
 
 

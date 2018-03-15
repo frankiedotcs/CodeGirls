@@ -32,6 +32,29 @@ namespace SignalRChat {
                 return ex.Message;
             }
         }
+
+
+        public string getCountSQL()
+        {
+            try {
+                sql = "SELECT counts FROM dbo.lifeGame";
+                return sql;
+            }
+            catch (Exception ex) {
+                return ex.Message;
+            }
+        }
+
+        public string updateCountSQL(int i)
+        {
+            try {
+                sql = "UPDATE dbo.lifeGame SET counts = " + i;
+                return sql;
+            }
+            catch (Exception ex) {
+                return ex.Message;
+            }
+        }
         /// <summary>
         /// Query that updates the specified value in the data column to 1,alive
         /// </summary>
