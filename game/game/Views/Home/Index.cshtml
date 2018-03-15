@@ -6,7 +6,7 @@
 <div class="container">
     <canvas id="myCanvas" width="160" height="160" style="border:1px solid #d3d3d3;"></canvas>
 
-    <button> Start </button>
+    <button id="start"> Start </button>
     <button id="next"> Next</button>
     <button> Stop </button>
 
@@ -42,6 +42,10 @@
         $.connection.hub.start() .done(function () {
             $('#next').click(function () {
                 hub.server.next();
+            });
+
+            $('#start').click(function () {
+                hub.server.start();
             });
 
             //Add Hit test event listener

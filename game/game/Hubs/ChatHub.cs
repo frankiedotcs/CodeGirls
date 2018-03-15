@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using System.Timers;
+
 namespace SignalRChat
 {
     public class ChatHub : Hub
@@ -14,11 +16,13 @@ namespace SignalRChat
         public string arrayString;
         SQLCode sql = new SQLCode();
         DBConnect db = new DBConnect();
+        Timer timer = new Timer(2000);
 
         //Initiliaze grid to glider formation
         public override Task OnConnected()
         {
             string name = Context.User.Identity.Name;
+
             //Get string from DB
             string viewString = sql.viewGrid();
             arrayString = db.readDB(viewString);
@@ -37,6 +41,11 @@ namespace SignalRChat
             Clients.All.updateArrayOnPage(array1D);
 
             return base.OnConnected();
+        }
+
+        private Task HandleTimer()
+        {
+            throw new NotImplementedException();
         }
 
         //Client calls to execute next step in game logic 
@@ -85,8 +94,15 @@ namespace SignalRChat
 
         }
 
+        public void Start()
+        {
+            timer.AutoReset = true;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(Update);
+            timer.Start();
+           
+        }
 
-    
+        
 
         //Converts inputed string to gridArray 2 dimensional array
         public void StringtoArray(string str)
@@ -176,6 +192,12 @@ namespace SignalRChat
             }
 
             gridArray = newArray.Clone() as int[,];
+        }
+
+        //Checks neighborhood and brings alive/kills based on game logic
+        public void Update(object  sender, ElapsedEventArgs e)
+        {
+            Update();
         }
 
 
