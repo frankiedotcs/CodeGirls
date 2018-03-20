@@ -1,18 +1,18 @@
 ﻿@{
     ViewBag.Title = "Game of Life";
 }
-<link rel="stylesheet" href="styles.css">
 <img src="logo.png">
+
 <p></p>
 
 <div class="container">
 
     <canvas id="myCanvas" width="160" height="160" style="border:1px solid #d3d3d3;"></canvas>
-<p></p>
-    <button id="start"> Start </button>
-    <button id="next"> Next</button>
-    <button id="stop"> Stop </button>
-    <button id="restart"> Restart </button>
+    <p></p>
+    <button id="start" class="but"> Start </button>
+    <button id="next" class="but"> Next</button>
+    <button id="stop" class="but"> Stop </button>
+    <button id="restart" class="but"> Restart </button>
 
 </div>
 @section scripts {
@@ -43,7 +43,7 @@
 
         // Start the connection.
         // Set event listeners that call specified hub functions
-        $.connection.hub.start() .done(function () {
+        $.connection.hub.start().done(function () {
             $('#next').click(function () {
                 hub.server.next();
             });
@@ -79,78 +79,78 @@
 
             }, false);
         });
-        
 
 
-    // Basic Shape Contructor to store Shapes position and properties
-    function Shape(x, y, r, c, alive) {
-        this.x = x;
-        this.y = y;
-        this.w = 15;
-        this.h = 15;
-        this.r = r;
-        this.c = c;
-        this.alive = alive;
-        if (alive == 0)
-            this.fill = "grey";
-        if (alive == 1)
-            this.fill = "green";
-    }
-    
 
-    function createShapeArray() {
-        //creates 2D array
-        for (var i = 0; i < 12; i++) { 
-              shapeArr[i] = new Array(12);
+        // Basic Shape Contructor to store Shapes position and properties
+        function Shape(x, y, r, c, alive) {
+            this.x = x;
+            this.y = y;
+            this.w = 15;
+            this.h = 15;
+            this.r = r;
+            this.c = c;
+            this.alive = alive;
+            if (alive == 0)
+                this.fill = "grey";
+            if (alive == 1)
+                this.fill = "green";
         }
 
-        //Initialize Array
-        var xPos = 0;
-        var yPos = 0;
-        var count = 0;
-        for (var r = 0; r < 12; r++) {
-            for (var c = 0; c < 12; c++) {
-                shapeArr[r][c] = new Shape(xPos, yPos, r, c, binArr[count]);
-                count++;
-                if (c == 0 || c == 11)  //skip if edge
+
+        function createShapeArray() {
+            //creates 2D array
+            for (var i = 0; i < 12; i++) {
+                shapeArr[i] = new Array(12);
+            }
+
+            //Initialize Array
+            var xPos = 0;
+            var yPos = 0;
+            var count = 0;
+            for (var r = 0; r < 12; r++) {
+                for (var c = 0; c < 12; c++) {
+                    shapeArr[r][c] = new Shape(xPos, yPos, r, c, binArr[count]);
+                    count++;
+                    if (c == 0 || c == 11)  //skip if edge
+                        continue;
+                    xPos += 16;
+                }
+                xPos = 0;
+
+                if (r == 0 || r == 11)  //skip if edge
                     continue;
-                xPos += 16;
+                yPos += 16;
             }
-            xPos = 0;
 
-            if (r == 0 || r == 11)  //skip if edge
-                continue;
-            yPos += 16;
-        }  
-       
-    }//end createArray
+        }//end createArray
 
 
 
-    //Draws Canvas and all the elements in the array
-    function draw() {
-        context = elem.getContext('2d');
-        for (var i = 1; i < 11; i++) {
-            for (var j = 1; j < 11; j++) {
-                oRec = shapeArr[i][j];
-                context.fillStyle = oRec.fill;
-                context.fillRect(oRec.x, oRec.y, oRec.w, oRec.h);
+        //Draws Canvas and all the elements in the array
+        function draw() {
+            context = elem.getContext('2d');
+            for (var i = 1; i < 11; i++) {
+                for (var j = 1; j < 11; j++) {
+                    oRec = shapeArr[i][j];
+                    context.fillStyle = oRec.fill;
+                    context.fillRect(oRec.x, oRec.y, oRec.w, oRec.h);
+                }
             }
         }
-    }
 
 
-    //Starts and stops animation on button press
-    var interval;
-    function start() {
-        interval = setInterval(update, 700);
-    }
-    function stop() {
-        clearInterval(interval);
-    }
-    
+        //Starts and stops animation on button press
+        var interval;
+        function start() {
+            interval = setInterval(update, 700);
+        }
+        function stop() {
+            clearInterval(interval);
+        }
 
 
-</script>
+
+    </script>
 
 }
